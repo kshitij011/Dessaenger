@@ -1,10 +1,12 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { ethers } from "ethers";
 
 export const WalletContext = createContext();
 
 export const WalletProvider = ({ children }) => {
     const [account, setAccount] = useState(null);
+    const [ethSigner, setEthSigner] = useState(null);
     const [isConnecting, setIsConnecting] = useState(false);
 
     // Connect to Metamask
@@ -24,6 +26,10 @@ export const WalletProvider = ({ children }) => {
             });
 
             setAccount(accounts[0]);
+
+            const provider = new ethers.BrowserProvider(window.ethereum);
+            const signerInstance = await provider.getSigner();
+            setEthSigner(signerInstance);
 
             // Step 2: Switch to Sepolia
             await window.ethereum.request({
@@ -75,6 +81,7 @@ export const WalletProvider = ({ children }) => {
             const handleAccountsChanged = (accounts) => {
                 if (accounts.length === 0) {
                     setAccount(null);
+                    setEthSigner(null);
                 } else {
                     setAccount(accounts[0]);
                 }
@@ -93,7 +100,7 @@ export const WalletProvider = ({ children }) => {
 
     return (
         <WalletContext.Provider
-            value={{ account, connectWallet, isConnecting }}
+            value={{ account, ethSigner, connectWallet, isConnecting }}
         >
             {children}
         </WalletContext.Provider>

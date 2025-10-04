@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@xmtp/browser-sdk": "^5.0.0",
+    "@xmtp/xmtp-js": "^13.0.4",
+    "ethers": "^6.15.0",
     "framer-motion": "^12.23.22",
     "lucide-react": "^0.544.0",
     "next": "15.5.4",

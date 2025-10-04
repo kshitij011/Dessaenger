@@ -8,7 +8,7 @@ export default function Home() {
                 {/* Text */}
                 <div className="w-full md:w-2/3 space-y-3">
                     <h2 className="text-3xl font-extrabold text-gray-800">
-                        Are you worried about your privacy.
+                        Are you worried about your privacy while messaging.
                     </h2>
                     <p className="text-gray-600 text-lg">Enter Dessenger</p>
                     <p className="text-gray-600 text-lg">
